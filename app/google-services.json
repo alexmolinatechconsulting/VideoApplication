@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "167818647497",
+    "firebase_url": "https://videoapplication-fdeca-default-rtdb.firebaseio.com",
+    "project_id": "videoapplication-fdeca",
+    "storage_bucket": "videoapplication-fdeca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:167818647497:android:62292ae6e82d396773ba18",
+        "android_client_info": {
+          "package_name": "com.VideoApplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAA-WJJCA42gT3oDDZJOxcoa6WttsMZs5E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:167818647497:android:512c173c1d02639773ba18",
+        "android_client_info": {
+          "package_name": "com.videoapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAA-WJJCA42gT3oDDZJOxcoa6WttsMZs5E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
