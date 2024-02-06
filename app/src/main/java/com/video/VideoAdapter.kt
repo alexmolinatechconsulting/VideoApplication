@@ -24,7 +24,7 @@ class VideoAdapter(
 
         context = parent.context
 
-        return DealViewHolder(
+        return VideoViewHolder(
             VideoDataBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -50,7 +50,7 @@ class VideoAdapter(
         notifyDataSetChanged()
     }
 
-    inner class DealViewHolder(
+    inner class VideoViewHolder(
         binding: VideoDataBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
