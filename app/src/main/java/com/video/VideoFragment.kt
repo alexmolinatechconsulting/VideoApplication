@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.video.data.VideoData
+import com.video.data.VideoDataList
 import com.videoapplication.databinding.FragmentVideoBinding
 
 class VideoFragment : Fragment() {
@@ -30,6 +31,7 @@ class VideoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         val viewModel = ViewModelProvider(this)[VideoViewModel::class.java]
+        adapter = VideoAdapter(emptyList())
 
         viewModel.videos.observe(viewLifecycleOwner) {
             updateAdapter(it)
@@ -64,7 +66,7 @@ class VideoFragment : Fragment() {
         rv.adapter = adapter
     }
 
-    private fun updateAdapter(deals: List<VideoData>) {
-        adapter?.updateDataSet(deals)
+    private fun updateAdapter(videos: List<VideoData>) {
+        adapter?.updateDataSet(videos)
     }
 }

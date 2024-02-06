@@ -1,14 +1,14 @@
 package com.video.api
 
 import com.VideoApplication
-import com.video.data.VideoData
+import com.video.data.VideoDataList
 import com.videoapplication.BuildConfig
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class VideoApiService {
 
-    suspend fun getVideos(query: String) : List<VideoData> {
+    suspend fun getVideos(query: String) : VideoDataList {
 
         val retrofit = Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)

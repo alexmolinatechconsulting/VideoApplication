@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.VideoApplication
-import com.video.api.VideoApiService
 import com.video.data.VideoData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,10 +16,13 @@ class VideoViewModel(): ViewModel() {
 
     fun getVideos(search : String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val result = VideoApplication.instance.container!!.service.getVideos(search)
+            val result = VideoApplication.instance.container!!
+                .service.getVideos(search)
 
-            if (result.isNotEmpty()) {
-                _videos.postValue(result)
+            val videoList = result.results
+
+            if (videoList != null && videoList.isNotEmpty()) {
+                _videos.postValue(videoList!!)
             }
         }
     }

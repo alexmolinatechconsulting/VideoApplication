@@ -40,13 +40,13 @@ class VideoAdapter(
     ) {
 
         val item = dataSet[position]
-        holder.videoTitle.text = item.results!!.title
+        holder.videoTitle.text = item.title!!
 
         var requestOptions = RequestOptions()
         requestOptions = requestOptions.transform(FitCenter(), RoundedCorners(16))
         Glide
             .with(context!!)
-            .load("${item.results.poster_path}")
+            .load("${item.poster_path}")
             .apply(requestOptions)
             .skipMemoryCache(true)
             .placeholder(R.drawable.placeholder)
