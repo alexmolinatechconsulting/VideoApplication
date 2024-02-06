@@ -7,7 +7,9 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.authentication.LoginActivity
+import com.video.VideoFragment
 import com.videoapplication.R
+import com.videoapplication.databinding.FragmentVideoBinding
 
 class VideoApplicationActivity : AppCompatActivity() {
 
@@ -19,7 +21,17 @@ class VideoApplicationActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         toolbar.showOverflowMenu()
-    }
+
+        getSupportFragmentManager()
+            .beginTransaction()
+            .add(
+                R.id.frame_layout,
+                VideoFragment()//FragmentVideoBinding.inflate(R.layout.fragment_video)
+            )
+            .addToBackStack(null)
+            .commit()
+
+}
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_dropdown, menu)

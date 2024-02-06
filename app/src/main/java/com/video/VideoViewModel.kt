@@ -4,19 +4,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.VideoApplication
 import com.video.api.VideoApiService
 import com.video.data.VideoData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class VideoViewModel(private val videoApiService: VideoApiService): ViewModel() {
+class VideoViewModel(): ViewModel() {
 
     private var _videos = MutableLiveData<List<VideoData>>()
     val videos: LiveData<List<VideoData>> = _videos
 
     fun getVideos(search : String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val result = videoApiService.getVideos(search)
+            val result = VideoApplication.instance.container!!.service.getVideos(search)
 
             if (result.isNotEmpty()) {
                 _videos.postValue(result)
