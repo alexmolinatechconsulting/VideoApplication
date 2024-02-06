@@ -10,9 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class VideoViewModel constructor(
-    private val videoApiService: VideoApiService
-): ViewModel() {
+class VideoViewModel(private val videoApiService: VideoApiService): ViewModel() {
 
     private var _videos = MutableLiveData<List<VideoData>>()
     val videos: LiveData<List<VideoData>> = _videos
@@ -26,7 +24,7 @@ class VideoViewModel constructor(
             }
         }
     }
-]
+
     fun clearDeals() {
         _videos.value = emptyList()
     }
