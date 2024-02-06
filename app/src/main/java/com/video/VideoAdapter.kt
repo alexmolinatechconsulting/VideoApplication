@@ -11,6 +11,8 @@ import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.video.data.VideoData
+import com.videoapplication.R
+import com.videoapplication.databinding.ItemVideoBinding
 
 class VideoAdapter(
     private var dataSet: List<VideoData>
@@ -25,7 +27,7 @@ class VideoAdapter(
         context = parent.context
 
         return VideoViewHolder(
-            VideoDataBinding.inflate(
+            ItemVideoBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -38,9 +40,17 @@ class VideoAdapter(
     ) {
 
         val item = dataSet[position]
+        val title = item.results!!.title
 
         var requestOptions = RequestOptions()
         requestOptions = requestOptions.transform(FitCenter(), RoundedCorners(16))
+        Glide
+            .with(context!!)
+            .load("${item.results.poster_path}")
+            .apply(requestOptions)
+            .skipMemoryCache(true)
+            .placeholder(R.drawable.placeholder)
+            .into(holder.videoPosterPath)
     }
 
     override fun getItemCount(): Int = dataSet.size
@@ -51,8 +61,15 @@ class VideoAdapter(
     }
 
     inner class VideoViewHolder(
-        binding: VideoDataBinding
+        binding: ItemVideoBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
+        val videoTitle : TextView
+        val videoPosterPath : ImageView
+
+        init {
+            videoTitle = binding.videoTitle
+            videoPosterPath = binding.videoPosterPath
+        }
     }
 }

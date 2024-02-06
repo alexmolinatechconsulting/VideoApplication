@@ -2,20 +2,21 @@ package com.video.api
 
 import com.VideoApplication
 import com.video.data.VideoData
+import com.videoapplication.BuildConfig
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class VideoApiService {
 
-    suspend fun getVideos(search: String) : List<VideoData> {
+    suspend fun getVideos(query: String) : List<VideoData> {
 
         val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .client(VideoApplication.instance.container!!.httpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
         val service = retrofit.create(VideoApi::class.java)
-        return service.getVideos(search)
+        return service.getVideos(token = "Bearer ${BuildConfig.BEARER_TOKEN}", query = query)
     }
 }

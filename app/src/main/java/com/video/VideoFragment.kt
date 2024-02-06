@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.video.data.VideoData
+import com.videoapplication.databinding.FragmentVideoBinding
 
 class VideoFragment : Fragment() {
 
@@ -27,10 +28,8 @@ class VideoFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         val viewModel = ViewModelProvider(this)[VideoViewModel::class.java]
-        adapter = VideoAdapter(arrayListOf())
 
         viewModel.videos.observe(viewLifecycleOwner) {
             updateAdapter(it)
@@ -38,7 +37,7 @@ class VideoFragment : Fragment() {
 
         setupRecyclerView()
 
-        val searchView: SearchView = binding.searchView
+        val searchView: SearchView = binding.fragmentVideoSearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 viewModel.getVideos(query!!)
@@ -58,7 +57,7 @@ class VideoFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        val rv: RecyclerView = binding.rvDeals
+        val rv: RecyclerView = binding.rvVideo
         rv.layoutManager = LinearLayoutManager(
             requireContext(), LinearLayoutManager.VERTICAL, false
         )

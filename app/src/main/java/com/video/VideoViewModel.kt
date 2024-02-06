@@ -9,7 +9,6 @@ import com.video.data.VideoData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-
 class VideoViewModel(private val videoApiService: VideoApiService): ViewModel() {
 
     private var _videos = MutableLiveData<List<VideoData>>()

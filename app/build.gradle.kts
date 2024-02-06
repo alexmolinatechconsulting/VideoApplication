@@ -6,6 +6,20 @@ plugins {
     id("com.google.gms.google-services")
 }
 
+var properties = Properties()
+var baseUrl : String = ""
+var endpointVideo : String = ""
+var apiKey : String = ""
+var bearerToken : String = ""
+
+if (File("local.properties").exists()) {
+    properties = Properties().apply { load(project.rootProject.file("local.properties").inputStream()) }
+    baseUrl = properties.getProperty("BASE_URL")
+    endpointVideo = properties.getProperty("ENDPOINT_VIDEO")
+    apiKey = properties.getProperty("API_KEY")
+    bearerToken = properties.getProperty("BEARER_TOKEN")
+}
+
 android {
     namespace = "com.videoapplication"
     compileSdk = 34
@@ -37,17 +51,27 @@ android {
     }
     buildFeatures{
         viewBinding = true
+        buildConfig = true
+    }
+    buildTypes {
+        debug{
+            buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
+            buildConfigField("String", "ENDPOINT_VIDEO", "\"$endpointVideo\"")
+            buildConfigField("String", "API_KEY", "\"$apiKey\"")
+            buildConfigField("String", "BEARER_TOKEN", "\"$bearerToken\"")
+        }
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            )
+            buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
+            buildConfigField("String", "ENDPOINT_VIDEO", "\"$endpointVideo\"")
+            buildConfigField("String", "API_KEY", "\"$apiKey\"")
+            buildConfigField("String", "BEARER_TOKEN", "\"$bearerToken\"")
+        }
     }
 }
-
-var properties = Properties()
-var baseUrl : String = ""
-
-if (File("local.properties").exists()) {
-    properties = Properties().apply { load(project.rootProject.file("local.properties").inputStream()) }
-    baseUrl = properties.getProperty("BASE_URL")
-}
-
 
 dependencies {
 
