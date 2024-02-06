@@ -28,7 +28,7 @@
         </activity>
 
         <activity
-            android:name="com.VideoApplicationActivity"/>
+            android:name="com.VideoApplicationActivity">
         </activity>
 
     </application>
