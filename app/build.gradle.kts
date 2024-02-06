@@ -8,6 +8,7 @@ plugins {
 
 var properties = Properties()
 var baseUrl : String = ""
+var baseImageUrl : String = ""
 var endpointVideo : String = ""
 var apiKey : String = ""
 var bearerToken : String = ""
@@ -15,6 +16,7 @@ var bearerToken : String = ""
 if (File("local.properties").exists()) {
     properties = Properties().apply { load(project.rootProject.file("local.properties").inputStream()) }
     baseUrl = properties.getProperty("BASE_URL")
+    baseImageUrl = properties.getProperty("BASE_IMAGE_URL")
     endpointVideo = properties.getProperty("ENDPOINT_VIDEO")
     apiKey = properties.getProperty("API_KEY")
     bearerToken = properties.getProperty("BEARER_TOKEN")
@@ -56,6 +58,7 @@ android {
     buildTypes {
         debug{
             buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
+            buildConfigField("String", "BASE_IMAGE_URL", "\"$baseImageUrl\"")
             buildConfigField("String", "ENDPOINT_VIDEO", "\"$endpointVideo\"")
             buildConfigField("String", "API_KEY", "\"$apiKey\"")
             buildConfigField("String", "BEARER_TOKEN", "\"$bearerToken\"")
@@ -66,6 +69,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
             buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
+            buildConfigField("String", "BASE_IMAGE_URL", "\"$baseImageUrl\"")
             buildConfigField("String", "ENDPOINT_VIDEO", "\"$endpointVideo\"")
             buildConfigField("String", "API_KEY", "\"$apiKey\"")
             buildConfigField("String", "BEARER_TOKEN", "\"$bearerToken\"")

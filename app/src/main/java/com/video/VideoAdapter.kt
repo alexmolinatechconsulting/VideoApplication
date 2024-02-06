@@ -11,6 +11,7 @@ import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.video.data.VideoData
+import com.videoapplication.BuildConfig
 import com.videoapplication.R
 import com.videoapplication.databinding.ItemVideoBinding
 
@@ -46,7 +47,7 @@ class VideoAdapter(
         requestOptions = requestOptions.transform(FitCenter(), RoundedCorners(16))
         Glide
             .with(context!!)
-            .load("${item.poster_path}")
+            .load("${BuildConfig.BASE_IMAGE_URL}${item.poster_path}")
             .apply(requestOptions)
             .skipMemoryCache(true)
             .placeholder(R.drawable.placeholder)
