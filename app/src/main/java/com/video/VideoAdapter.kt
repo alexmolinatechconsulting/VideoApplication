@@ -40,8 +40,8 @@ class VideoAdapter(
     ) {
 
         val item = dataSet[position]
-        val title = item.results!!.title
-
+        holder.videoTitle.text = item.results!!.title
+       
         var requestOptions = RequestOptions()
         requestOptions = requestOptions.transform(FitCenter(), RoundedCorners(16))
         Glide
